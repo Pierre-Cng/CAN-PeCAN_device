@@ -15,3 +15,4 @@ Build of a CAN logger with raspberry pi.
 
 ## References:
 <https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/>
+<https://www.waveshare.com/wiki/RS485_CAN_HAT>
