@@ -16,3 +16,7 @@ Build of a CAN logger with raspberry pi.
 ## References:
 <https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/>
 <https://www.waveshare.com/wiki/RS485_CAN_HAT>
+<https://wiki.seeedstudio.com/2-Channel-CAN-BUS-FD-Shield-for-Raspberry-Pi/>
+<https://www.beyondlogic.org/adding-can-controller-area-network-to-the-raspberry-pi/>
+<https://www.waveshare.com/wiki/2-CH_CAN_HAT>
+<https://circuitdigest.com/microcontroller-projects/rs485-serial-communication-between-arduino-and-raspberry-pi>
