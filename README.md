@@ -21,7 +21,7 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
 * Plug the Hat on your Raspberry
 * Modify config.txt:  
   * Open config.txt file with `sudo nano /boot/config.txt` and allow SPI protocole by uncommenting the line `dtparam=spi=on`
-  * Add this line to the file `dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000` to load the mcp2515 (CANHat controller) driver and set communication parameters
+  * Add the following line to the file `dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000` to load the mcp2515 (CANHat controller) driver and set communication parameters
 * Load the SocketCAN kernel modules:
   * Use the command `sudo modprobe can` and `sudo modprobe can_raw`
   * Verify the result with `lsmod | grep "can"`
