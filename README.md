@@ -30,7 +30,7 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
   * Bring up with `sudo ip link set up can0`
   * Verify the result with `ip addr | grep "can"`
 
-**Tips**: For step 2) you can direclty replace the **config.txt** file by the one of this repository and run **socketcan_init.sh** script of this repository to perform all the steps. Note that you need to perform those step only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every raspberry boot, for that you can create a service at boot with the script **socketcan_wakeup.sh**.
+**Tips**: For step 2) you can direclty replace the [config.txt](config.txt) file by the one of this repository and run **socketcan_init.sh** script of this repository to perform all the steps. Note that you need to perform those step only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every raspberry boot, for that you can create a service at boot with the script **socketcan_wakeup.sh**.
 
 ### 3) Send / Receive messages:
 * Install package `sudo apt install can-utils`
