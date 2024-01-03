@@ -21,8 +21,8 @@ Build of a CAN decoder with a raspberry pi zero w and a CANHat.
 Or in a nutshell:
 * Plug the Hat on your Raspberry
 * Modify config.txt:  
-** Open config.txt file with `sudo nano /boot/config.txt` and allow SPI protocole by uncommenting the line 'dtparam=spi=on'
-** Add this line to the file `dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000` to load the mcp2515 (CANHat controller) driver and set communication parameters
+  * Open config.txt file with `sudo nano /boot/config.txt` and allow SPI protocole by uncommenting the line 'dtparam=spi=on'
+  * Add this line to the file `dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000` to load the mcp2515 (CANHat controller) driver and set communication parameters
 
 
 
