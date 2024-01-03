@@ -23,42 +23,20 @@ Or in a nutshell:
 * Modify config.txt:  
   * Open config.txt file with `sudo nano /boot/config.txt` and allow SPI protocole by uncommenting the line 'dtparam=spi=on'
   * Add this line to the file `dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000` to load the mcp2515 (CANHat controller) driver and set communication parameters
+* Load the SocketCAN kernel modules:
+  * Use the command `sudo modprobe can` and `sudo modprobe can_raw`
+  * Verify the result with `lsmod | grep "can"`
+* Configure and bring up the SocketCAN network interface:
+  * Configure with `sudo ip link set can0 type can bitrate 500000 restart-ms 100`
+  * Bring up with `sudo ip link set up can0`
+  * Verify the result with `ip addr | grep "can"`
 
+**Tips**: For step 2) you can direclty replace the **config.txt** file by the one of this repository and run **socketcan_init.sh** script of this repository to perform all the steps. Note that you need to perform those step only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every raspberry boot, for that you can create a service at boot with the script **socketcan_wakeup.sh**.
 
-
-
-ip addr | grep "can"
-T
-
-Load the SocketCAN kernel modules
-Before our Raspberry PI can bring the can0 SocketCAN network interface in the UP state, we need to first load the SocketCAN related kernel modules. Open up the terminal again and run these commands:
-sudo modprobe can
-sudo modprobe can_raw
-To verify that the SocketCAN related kernel modules loaded properly, run:
-
-lsmod | grep "can"
-Terminal screenshot showing the output of the "lsmod" command, used to verify that the can and can_raw kernel modules were properly loaded using "modprobe".
-Configure and bring up the SocketCAN network interface
-After loading the CAN related kernel modules, we continue with the final step: Bring the can0 SocketCAN network interface in the UP state. It is a two step process:
-
-
-sudo ip link set can0 type can bitrate 500000 restart-ms 100
-sudo ip link set up can0
-
-
-sudo apt install can-utils
-
-candump -tz can0
-
-cansend can0 456#00FFAA5501020304
-
-Loading the kernel modules:
-sudo modprobe can
-sudo modprobe can_raw
-Configuring the SocketCAN network interface:
-sudo ip link set can0 type can bitrate 500000 restart-ms 100
-Bringing the SocketCAN network interface in the UP state:
-sudo ip link set up can0
+### 3) Send / Receive messages:
+* Install package `sudo apt install can-utils`
+* To receive use `candump -tz can0`
+* To send use `cansend can0 456#00FFAA5501020304` for example
 
 ## References:
 <https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/>
