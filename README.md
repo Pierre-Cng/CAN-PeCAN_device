@@ -17,8 +17,7 @@ Build of a CAN decoder with a raspberry pi zero w and a CANHat.
 **Tips**: Set up a hotspot from your computer to have a private subnet where you can connect your raspberry.
 
 ### 2) Set up the CANHat:
-* You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/)  
-Or in a nutshell:
+You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/). Or in a nutshell:
 * Plug the Hat on your Raspberry
 * Modify config.txt:  
   * Open config.txt file with `sudo nano /boot/config.txt` and allow SPI protocole by uncommenting the line 'dtparam=spi=on'
