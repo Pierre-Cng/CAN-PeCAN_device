@@ -30,9 +30,19 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
   * Bring up with `sudo ip link set up can0`
   * Verify the result with `ip addr | grep "can"`
 
-**Tips**: For step 2) you can direclty replace the [config.txt](config.txt) file by the one of this repository and run **socketcan_init.sh** script of this repository to perform all the steps. Note that you need to perform those step only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every raspberry boot, for that you can create a service at boot with the script **socketcan_wakeup.sh**.
+**Tips**: For step 2) you can direclty replace the config.txt by [this one](config.txt) and run [socketcan_init.sh](socketcan_init.sh) script to perform all the steps. Note that you need to perform those steps only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every Raspberry boot, please refer to next section.
 
-### 3) Send / Receive messages:
+### 3) Set up Socketcan interface on boot:
+Section to finsih
+'''
+for that you can create a service at boot with the script **socketcan_wakeup.sh**.
+https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/#:~:text=1%20Running%20Programs%20at%20Startup.%20Sometimes%20the%20software,must%20tell%20systemd%20to%20reload%20the...%20More%20
+https://www.linode.com/docs/guides/start-service-at-boot/
+https://linuxhandbook.com/create-systemd-services/
+https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples
+'''
+
+### 4) Send / Receive messages:
 * Install package `sudo apt install can-utils`
 * To receive use `candump -tz can0`
 * To send use `cansend can0 456#00FFAA5501020304` for example
