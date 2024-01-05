@@ -1,4 +1,4 @@
-# CAN Hardware Decoder
+# CAN Hardware Decoder (CHD)
 
 ## Description:
 Build of a CAN decoder with a raspberry pi zero w and a CANHat.
@@ -8,7 +8,7 @@ Build of a CAN decoder with a raspberry pi zero w and a CANHat.
 * [Raspberry Pi Zero WH](https://www.amazon.com/Raspberry-Bluetooth-Compatible-Connector-headers/dp/B0CG99MR5W/ref=sr_1_4?crid=24FPUDKHENO8M&keywords=raspberry+pi+zero+wh&qid=1704312449&sprefix=raspberry+pi+zero+wh%2Caps%2C116&sr=8-4)
 * [DB9 connector RS232](https://www.amazon.com/Jienk-Serial-Solder-Connectors-Couplers/dp/B08JLFJJNT/ref=sr_1_13?crid=31WMACKUU3T3U&keywords=db9%2Bconnector&qid=1704312518&sprefix=db9%2B%2Caps%2C138&sr=8-13&th=1)
   
-## Steps:
+## Set up:
 
 ### 1) Set up the raspberry pi:
 * Install Raspbian lite OS on the micro SD card thanks to the [Raspberry Pi imager](https://www.raspberrypi.com/software/).
@@ -46,6 +46,9 @@ https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-servic
 * Install package `sudo apt install can-utils`
 * To receive use `candump -tz can0`
 * To send use `cansend can0 456#00FFAA5501020304` for example
+
+## Receiving / decoding strategy:
+The CHD will be responsible for one specific CAN channel. It will be connect to it though a DB9 connector linked to the CANHat. A dbc file will be assign to the CHD. The package [CAN-CandumpDecoder](https://github.com/Pierre-Cng/CAN-CandumpDecoder.git) will be used with the [candump](https://manpages.debian.org/testing/can-utils/candump.1.en.html) command as the following: `candump -l can0 | py -m CandumpDecoder --channel yourdbcfile`. The command will create an output file for the CAN trace and one for the decoded messages.
 
 ## References:
 <https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/>
