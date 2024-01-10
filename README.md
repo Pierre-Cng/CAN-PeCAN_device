@@ -40,14 +40,6 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
 * Enable service with `sudo systemctl enable socketcan_wakeup.service`
 * Start service with `sudo systemctl start socketcan_wakeup.service`
 * Check status with `systemctl status socketcan_wakeup.service`
-  
-'''
-for that you can create a service at boot with the script **socketcan_wakeup.sh**.
-https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/#:~:text=1%20Running%20Programs%20at%20Startup.%20Sometimes%20the%20software,must%20tell%20systemd%20to%20reload%20the...%20More%20
-https://www.linode.com/docs/guides/start-service-at-boot/
-https://linuxhandbook.com/create-systemd-services/
-https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples
-'''
 
 ### 4) Send / Receive messages:
 * Install package `sudo apt install can-utils`
