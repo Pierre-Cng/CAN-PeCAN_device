@@ -33,7 +33,14 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
 **Tips**: For step 2) you can direclty replace the config.txt by [this one](config.txt) and run [socketcan_init.sh](socketcan_init.sh) script to perform all the steps. Note that you need to perform those steps only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every Raspberry boot, please refer to next section.
 
 ### 3) Set up Socketcan interface on boot:
-Section to finsih
+* Add [sockectcan_wakeup.sh](sockectcan_wakeup.sh) on `/bin/` directory
+* change access rights with `sudo chmod +x /bin/socketcan_wakeup.sh`
+* Add [sockectcan_wapeup.service](sockectcan_wapeup.service) on `/etc/systemd/system/`
+* reload daemon with `sudo systemctl daemon-reload`
+* Enable service with `sudo systemctl enable socketcan_wakeup.service`
+* Start service with `sudo systemctl start socketcan_wakeup.service`
+* Check status with `systemctl status socketcan_wakeup.service`
+  
 '''
 for that you can create a service at boot with the script **socketcan_wakeup.sh**.
 https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/#:~:text=1%20Running%20Programs%20at%20Startup.%20Sometimes%20the%20software,must%20tell%20systemd%20to%20reload%20the...%20More%20
