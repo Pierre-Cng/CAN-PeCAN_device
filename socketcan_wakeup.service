@@ -1,0 +1,10 @@
+[Unit]
+Description=Set up and configure can0 interface on boot
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/bin/socketcan_wakeup.sh
+
+[Install]
+WantedBy=multi-user.target
