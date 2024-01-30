@@ -1,7 +1,7 @@
-# CAN Hardware Decoder (CHD)
+# PeCAN - CAN Hardware Decoder
 
 ## Description:
-Build of a CAN decoder with a raspberry pi zero w and a CANHat.
+Build of a PeCAN, CAN decoder with a raspberry pi zero w and a CANHat.
 
 ## List of material:
 * [RS485 CAN HAT for Raspberry Pi](https://www.amazon.com/RS485-CAN-HAT-Long-Distance-Communication/dp/B07VMB1ZKH/ref=sr_1_2?crid=2VKVGQISVE8EN&keywords=waveshare+rs485+canhat&qid=1704312361&sprefix=canhat+%2Caps%2C129&sr=8-2)
@@ -14,7 +14,7 @@ Build of a CAN decoder with a raspberry pi zero w and a CANHat.
 * Install Raspbian lite OS on the micro SD card thanks to the [Raspberry Pi imager](https://www.raspberrypi.com/software/).
 * Set up the wifi and ssh connection parameters to be able to access the raspberry without monitor from your computer ([see here](https://www.learnrobotics.org/blog/raspberry-pi-without-a-monitor/#:~:text=Second%20Method%3A%20Raspberry%20Pi%20Without%20Monitor))
 
-**Tips**: Set up a hotspot from your computer to have a private subnet where you can connect your raspberry.
+**Tips**: Set up a hotspot from your computer to have a private subnet where you can connect your raspberry([see here](https://github.com/Pierre-Cng/Hotspot_Configurator)).
 
 ### 2) Set up the CANHat:
 You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/). Or in a nutshell:
@@ -30,12 +30,12 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
   * Bring up with `sudo ip link set up can0`
   * Verify the result with `ip addr | grep "can"`
 
-**Tips**: For step 2) you can direclty replace the config.txt by [this one](config.txt) and run [socketcan_init.sh](socketcan_init.sh) script to perform all the steps. Note that you need to perform those steps only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every Raspberry boot, please refer to next section.
+**Tips**: For step 2) you can direclty replace the config.txt by [this one](config/config.txt) and run [socketcan_init.sh](bash/socketcan_init.sh) script to perform all the steps. Note that you need to perform those steps only once an for all, only the 'Configure and bring up the SocketCAN network interface' steps need to be perform at every Raspberry boot, please refer to next section.
 
 ### 3) Set up Socketcan interface on boot:
-* Add [sockectcan_wakeup.sh](sockectcan_wakeup.sh) on `/bin/` directory
+* Add [sockectcan_wakeup.sh](bash/sockectcan_wakeup.sh) on `/bin/` directory
 * change access rights with `sudo chmod +x /bin/socketcan_wakeup.sh`
-* Add [sockectcan_wapeup.service](sockectcan_wapeup.service) on `/etc/systemd/system/`
+* Add [sockectcan_wapeup.service](service/sockectcan_wapeup.service) on `/etc/systemd/system/`
 * reload daemon with `sudo systemctl daemon-reload`
 * Enable service with `sudo systemctl enable socketcan_wakeup.service`
 * Start service with `sudo systemctl start socketcan_wakeup.service`
@@ -47,7 +47,7 @@ You can follow [this tutorial](https://www.pragmaticlinux.com/2021/10/can-commun
 * To send use `cansend can0 456#00FFAA5501020304` for example
 
 ## Receiving / decoding strategy:
-The CHD will be responsible for one specific CAN channel. It will be connect to it though a DB9 connector linked to the CANHat. A dbc file will be assign to the CHD. The package [CAN-CandumpDecoder](https://github.com/Pierre-Cng/CAN-CandumpDecoder.git) will be used with the [candump](https://manpages.debian.org/testing/can-utils/candump.1.en.html) command as the following: `candump -l can0 | py -m CandumpDecoder --channel yourdbcfile`. The command will create an output file for the CAN trace and one for the decoded messages.
+The PeCAN will be responsible for one specific CAN channel. It will be connect to it though a DB9 connector linked to the CANHat. A dbc file will be assign to the PeCAN. The package [CAN-TcpCanStream](https://github.com/Pierre-Cng/CAN-TcpCanStream) will be used as a service on boot to receive TCP request from the router and execute the associated command. For more details please refer to the related repository.
 
 ## References:
 <https://www.pragmaticlinux.com/2021/10/can-communication-on-the-raspberry-pi-with-socketcan/>
